@@ -1,10 +1,11 @@
 # -*- mode: python ; coding: utf-8 -*-
+import os
 
 a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('ico_fixed.ico', '.')],
     hiddenimports=['database.config', 'database.db', 'gui.setup', 'gui.app'],
     hookspath=[],
     hooksconfig={},
@@ -26,7 +27,7 @@ exe = EXE(
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
-    upx=True,
+    upx=False,
     upx_exclude=[],
     runtime_tmpdir=None,
     console=False,
@@ -35,5 +36,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='ico.ico',
+    icon=os.path.join(SPECPATH, 'ico_fixed.ico'),
 )

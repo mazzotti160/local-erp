@@ -25,6 +25,15 @@ def _show_setup_dialog():
     root.configure(bg=BG)
     root.eval("tk::PlaceWindow . center")
 
+    # Set icon if available
+    from gui.app import resource_path
+    icon_path = resource_path("ico_fixed.ico")
+    if os.path.exists(icon_path):
+        try:
+            root.iconbitmap(icon_path)
+        except Exception:
+            pass
+
     # Header
     header = tk.Frame(root, bg=BLUE, height=52)
     header.pack(fill="x")

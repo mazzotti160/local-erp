@@ -1,3 +1,5 @@
+import os
+import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import date, timedelta
@@ -17,6 +19,15 @@ GREEN       = "#2e7d32"
 RED         = "#c62828"
 
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -24,6 +35,14 @@ class App(tk.Tk):
         self.geometry("1020x660")
         self.minsize(860, 540)
         self.configure(bg=BG)
+        
+        icon_path = resource_path("ico_fixed.ico")
+        if os.path.exists(icon_path):
+            try:
+                self.iconbitmap(icon_path)
+            except Exception:
+                pass
+
         self._apply_style()
         self._build_header()
         self._build_notebook()

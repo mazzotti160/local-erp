@@ -1,0 +1,15 @@
+# PyInstaller
+build/
+dist/
+
+# IDEs
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+venv/
