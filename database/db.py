@@ -35,6 +35,23 @@ def initialize():
             FOREIGN KEY (product_id)    REFERENCES products(id)    ON DELETE CASCADE,
             FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE
         );
+
+        CREATE TABLE IF NOT EXISTS sales (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            product_id  INTEGER NOT NULL,
+            quantity    REAL    NOT NULL,
+            total_price REAL    NOT NULL,
+            date        TEXT    NOT NULL,
+            FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+        );
+
+        CREATE TABLE IF NOT EXISTS cash_flow (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            type        TEXT NOT NULL,
+            description TEXT NOT NULL,
+            value       REAL NOT NULL,
+            date        TEXT NOT NULL
+        );
     """)
     conn.commit()
     conn.close()
