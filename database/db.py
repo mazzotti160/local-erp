@@ -1,11 +1,13 @@
 import sqlite3
 import os
-
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "database.db")
+from database.config import get_db_path
 
 
 def get_connection():
-    conn = sqlite3.connect(DB_PATH)
+    db_path = get_db_path()
+    if not db_path:
+        raise RuntimeError("Banco de dados não configurado.")
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     return conn
